@@ -2,6 +2,7 @@ package org.szpinc.pay.common.utils;
 
 import com.google.common.collect.Maps;
 import org.springframework.cglib.beans.BeanMap;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,17 +12,19 @@ import java.util.Map;
 /**
  * @author Exrickx
  */
+@Component
 public class StringUtils {
 
-    private static SimpleDateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 格式化 日期 yyyy-MM-dd HH:mm:ss
+     *
      * @param date
      * @return
      */
-    public static String getTimeStamp(Date date){
-        if(date == null){
+    public static String getTimeStamp(Date date) {
+        if (date == null) {
             return dateFormat.format(new Date());
         } else {
             return dateFormat.format(date);
@@ -30,10 +33,11 @@ public class StringUtils {
 
     /**
      * 格式化 日期 yyyy-MM-dd HH:mm:ss
+     *
      * @param time
      * @return
      */
-    public static Date getDate(String time){
+    public static Date getDate(String time) {
 
         try {
             return dateFormat.parse(time);
@@ -45,13 +49,14 @@ public class StringUtils {
 
     /**
      * 判断字符创是否为空
+     *
      * @param str
      * @return
      */
     public static boolean isBlank(String str) {
         int strLen;
         if (str != null && (strLen = str.length()) != 0) {
-            for(int i = 0; i < strLen; ++i) {
+            for (int i = 0; i < strLen; ++i) {
                 if (!Character.isWhitespace(str.charAt(i))) {
                     return false;
                 }
@@ -65,6 +70,7 @@ public class StringUtils {
 
     /**
      * 判断字符创是否为空
+     *
      * @param str
      * @return
      */
@@ -74,6 +80,7 @@ public class StringUtils {
 
     /**
      * Bean 转 Map
+     *
      * @param bean
      * @param <T>
      * @return
@@ -83,7 +90,7 @@ public class StringUtils {
         if (bean != null) {
             BeanMap beanMap = BeanMap.create(bean);
             for (Object key : beanMap.keySet()) {
-                map.put(key+"", beanMap.get(key));
+                map.put(key + "" , beanMap.get(key));
             }
         }
         return map;
